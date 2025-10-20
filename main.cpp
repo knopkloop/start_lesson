@@ -3,7 +3,14 @@
 
 int** create(size_t rows, size_t cols);
 
-void remove(int** m, size_t rows, size_t cols);
+void remove(int** m, size_t rows){
+  for (size_t i = 0; i < rows; ++i) {
+    delete[] m[i];
+  }
+  delete[] m;
+}
+
+
 
 void input(int**  m, size_t rows, size_t cols){
   for (size_t i = 0; i < rows && (std::cin); ++i){
@@ -12,6 +19,7 @@ void input(int**  m, size_t rows, size_t cols){
     }  
   }
 }
+
 
 void output(const int * const * m, size_t rows, size_t cols){
   std::cout << rows << " " << cols;
@@ -37,6 +45,6 @@ int main()
   }
   output(m, rows, cols);
 
-  remove(m, rows, cols);
+  remove(m, rows);
   std::cout << "\n";
 }
