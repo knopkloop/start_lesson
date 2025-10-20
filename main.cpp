@@ -1,5 +1,6 @@
 #include <iostream>
 
+void clearArray(int**m, size_t rows);
 
 int** create(size_t rows, size_t cols) {
   int** result = new int*[rows];
@@ -10,8 +11,7 @@ int** create(size_t rows, size_t cols) {
     }
   }
   catch (...) {
-    remove(result, i);
-    return nullptr;
+   clearArray(result, i);
     throw;
   }
 
@@ -20,7 +20,7 @@ int** create(size_t rows, size_t cols) {
 
 
 
-void remove(int** m, size_t rows){
+void clearArray(int** m, size_t rows){
   for (size_t i = 0; i < rows; ++i) {
     delete[] m[i];
   }
@@ -62,12 +62,12 @@ int main()
   input(m, rows, cols);
 
   if (!std::cin){
-    remove(m, rows, cols);
+    clearArray(m, rows);
     return 1;
   }
 
   output(m, rows, cols);
 
-  remove(m, rows);
+  clearArray(m, rows);
   std::cout << "\n";
 }
