@@ -39,8 +39,12 @@ void input(int**  m, size_t rows, size_t cols){
 
 
 void output(const int * const * m, size_t rows, size_t cols){
-  std::cout << rows << " " << cols;
-  //...
+  for (size_t i = 0; i < rows; ++i) {
+    for(size_t j = 0; j < cols-1; ++j) {
+      std::cout << m[i][j] << " ";
+    }
+    std::cout << m[i][cols-1] << "\n";
+  }
 }
 
 
