@@ -13,7 +13,10 @@ void input(int**  m, size_t rows, size_t cols){
   }
 }
 
-void output(const int * const * m, size_t rows, size_t cols);
+void output(const int * const * m, size_t rows, size_t cols){
+  std::cout << rows << " " << cols;
+  //...
+}
 
 int main()
 {
