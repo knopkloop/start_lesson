@@ -11,7 +11,7 @@ int** create(size_t rows, size_t cols) {
     }
   }
   catch (...) {
-   clearArray(result, i);
+    clearArray(result, i);
     throw;
   }
 
@@ -40,10 +40,45 @@ void input(int**  m, size_t rows, size_t cols){
 
 void output(const int * const * m, size_t rows, size_t cols){
   for (size_t i = 0; i < rows; ++i) {
-    for(size_t j = 0; j < cols-1; ++j) {
+    for (size_t j = 0; j < cols-1; ++j) {
       std::cout << m[i][j] << " ";
     }
     std::cout << m[i][cols-1] << "\n";
+  }
+}
+
+
+
+
+int ** convert(const int * t, size_t n, const size_t * lns, size_t rows) {
+
+  size_t count = 0;
+
+  if ((rows==0) || (t==nullptr) || (lns==nullptr)) {
+    return nullptr;
+  }
+
+  for (size_t i = 0; i < rows; ++i) {
+    count += lns[i];
+  }
+
+  if (count != n) {
+    return nullptr;
+  }
+
+  int ** result = new int*[rows];
+  size_t i = 0;
+  try {
+    for (size_t i = 0; i < rows; ++i) {
+      for (size_t j = 0; j < lns[i]; ++j) {
+        result[i][j] = ((i > 0) ? t[i*lns[i-1]+j] : t[j]);
+      }
+    }
+    return result;
+  }
+  catch (...) {
+    clearArray(result, i);
+    throw;
   }
 }
 
